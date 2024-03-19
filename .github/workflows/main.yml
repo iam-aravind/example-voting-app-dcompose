@@ -43,7 +43,7 @@ jobs:
 
 
       - name: Terraform Plan
-        run: terraform plan -var "publickey=${{ secrets.BASTION_EC2_KEY }}"
+        run: terraform plan -var publickey=${{ secrets.BASTION_EC2_KEY }}
 
       - name: Terraform Apply
         run: terraform apply -var "publickey=${{ secrets.BASTION_EC2_KEY }}" -auto-approve
