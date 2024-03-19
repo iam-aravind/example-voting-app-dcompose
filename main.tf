@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_key_pair" "tf-key-pair" {
 key_name = "tf-key-pair"
-public_key = file("${var.publickey}")
+public_key = var.publickey
 }
 
 variable "publickey" {
