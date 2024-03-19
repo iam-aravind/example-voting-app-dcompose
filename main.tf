@@ -2,9 +2,14 @@ provider "aws" {
   region = "us-east-1" # Specify your desired AWS region
 }
 
-resource "aws_key_pair" "tf-key-pair" {
-key_name = "tf-key-pair"
-public_key = var.publickey
+resource "null_resource" "import_key_pair" {
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws ec2 import-key-pair \
+        --key-name AwsKeyName \
+        --public-key-material var.publickey
+    EOT
+  }
 }
 
 variable "publickey" {
