@@ -43,10 +43,10 @@ jobs:
 
 
       - name: Terraform Plan
-        run: terraform plan -var publickey=$BASTION_EC2_KEY
+        run: terraform plan -var publickey=./dev-bastion.pub
 
       - name: Terraform Apply
-        run: terraform apply -var publickey=$BASTION_EC2_KEY -auto-approve
+        run: terraform apply -var publickey=./dev-bastion.pub -auto-approve
 #   terraform_apply:
 #     environment:
 #       name: plan
