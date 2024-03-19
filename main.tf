@@ -2,7 +2,13 @@ provider "aws" {
   region = "us-east-1" # Specify your desired AWS region
 }
 
-resource "aws_s3_bucket" "example_bucket" {
-  bucket = "your-unique-bucket-name" # Specify a globally unique bucket name
-  acl    = "private" # Specify the ACL (Access Control List) for the bucket
+resource "aws_key_pair" "tf-key-pair" {
+key_name = "tf-key-pair"
+public_key = file("${var.publickey}")
 }
+
+variable "publickey" {
+  description = "ssh key for ec2 bastion instance"
+  type        = string
+}
+
